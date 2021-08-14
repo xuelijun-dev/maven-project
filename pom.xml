@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.maven</groupId>
+    <artifactId>maven-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring-boot.version>2.4.1</spring-boot.version>
+        <my_maven.version>1.0-SNAPSHOT</my_maven.version>
+    </properties>
+
+    <modules>
+        <module>./maven-model</module>
+        <module>./maven-dao</module>
+        <module>./maven-api</module>
+        <module>./maven-service</module>
+        <module>./maven-web</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.maven</groupId>
+                <artifactId>maven-model</artifactId>
+                <version>${my_maven.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.maven</groupId>
+                <artifactId>maven-dao</artifactId>
+                <version>${my_maven.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.maven</groupId>
+                <artifactId>maven-api</artifactId>
+                <version>${my_maven.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.maven</groupId>
+                <artifactId>maven-service</artifactId>
+                <version>${my_maven.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.maven</groupId>
+                <artifactId>maven-web</artifactId>
+                <version>${my_maven.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>2.3.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>2.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <version>2.4.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!--    <profiles>-->
+    <!--        <profile>-->
+    <!--            <id>dev</id>-->
+    <!--            <properties>-->
+    <!--                <jdbc.url>jdbc:mysql://nicedev.top:33065/dev</jdbc.url>-->
+    <!--                <jdbc.username>root</jdbc.username>-->
+    <!--                <jdbc.password>123456</jdbc.password>-->
+    <!--            </properties>-->
+    <!--            <repositories>-->
+    <!--                <repository>-->
+    <!--                    <id>maven-public</id>-->
+    <!--                    <name>maven-public</name>-->
+    <!--                    <url>http://localhost:8081/repository/maven-public/</url>-->
+    <!--                    <releases><enabled>true</enabled></releases>-->
+    <!--                    <snapshots><enabled>true</enabled></snapshots>-->
+    <!--                </repository>-->
+    <!--            </repositories>-->
+    <!--            <pluginRepositories>-->
+    <!--                <pluginRepository>-->
+    <!--                    <id>maven-public</id>-->
+    <!--                    <url>http://localhost:8081/repository/maven-public/</url>-->
+    <!--                    <releases><enabled>true</enabled></releases>-->
+    <!--                    <snapshots><enabled>true</enabled></snapshots>-->
+    <!--                </pluginRepository>-->
+    <!--            </pluginRepositories>-->
+    <!--            <activation>-->
+    <!--                <activeByDefault>true</activeByDefault>-->
+    <!--            </activation>-->
+    <!--        </profile>-->
+    <!--        <profile>-->
+    <!--            <id>test</id>-->
+    <!--            <properties>-->
+    <!--                <jdbc.url>jdbc:mysql://nicedev.top:33066/prod</jdbc.url>-->
+    <!--                <jdbc.username>root</jdbc.username>-->
+    <!--                <jdbc.password>123456</jdbc.password>-->
+    <!--            </properties>-->
+    <!--            <repositories>-->
+    <!--                <repository>-->
+    <!--                    <id>maven-public</id>-->
+    <!--                    <name>maven-public</name>-->
+    <!--                    <url>http://localhost:8081/repository/maven-public/</url>-->
+    <!--                    <releases><enabled>true</enabled></releases>-->
+    <!--                    <snapshots><enabled>true</enabled></snapshots>-->
+    <!--                </repository>-->
+    <!--            </repositories>-->
+    <!--            <pluginRepositories>-->
+    <!--                <pluginRepository>-->
+    <!--                    <id>maven-public</id>-->
+    <!--                    <url>http://localhost:8081/repository/maven-public/</url>-->
+    <!--                    <releases><enabled>true</enabled></releases>-->
+    <!--                    <snapshots><enabled>true</enabled></snapshots>-->
+    <!--                </pluginRepository>-->
+    <!--            </pluginRepositories>-->
+    <!--        </profile>-->
+    <!--    </profiles>-->
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
